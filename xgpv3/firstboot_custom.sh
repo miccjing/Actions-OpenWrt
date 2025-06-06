@@ -7,7 +7,7 @@ uci set wireless.@wifi-iface[0].encryption='psk2+ccmp'
 uci set wireless.@wifi-iface[0].key='j1472580369'
 uci set wireless.default_radio0.skip_inactivity_poll='1'
 uci set wireless.radio0.cell_density='0'
-wireless.radio0.country='CN'
+uci set wireless.radio0.country='CN'
 uci commit wireless
 #
 # 修改默认主题
