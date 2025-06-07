@@ -1,4 +1,4 @@
-name: Build OpenWrt
+name: Build OpenWrt for xgpv3
 
 on:
   repository_dispatch:
