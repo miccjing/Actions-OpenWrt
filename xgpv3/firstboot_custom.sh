@@ -2,7 +2,7 @@
 #
 # package/base-files/files/etc/uci-defaults/999-firstboot_custom.sh
 # 修改无线配置
-uci set wireless.@wifi-iface[0].ssid='WatermelonPi'
+uci set wireless.@wifi-iface[0].ssid='OpenWrt'
 uci set wireless.@wifi-iface[0].encryption='psk2+ccmp'
 uci set wireless.@wifi-iface[0].key='j1472580369'
 uci set wireless.default_radio0.skip_inactivity_poll='1'
