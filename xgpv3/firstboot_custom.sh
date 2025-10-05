@@ -25,11 +25,11 @@ uci commit system
 # 重新加载无线配置
 wifi reload
 #
-#qmodem启用PCIe模组扫描
+# qmodem启用PCIe模组扫描
 uci set qmodem.main.enable_pcie_scan='1'
-#qmodem启用USB模组扫描
+# qmodem启用USB模组扫描
 uci set qmodem.main.enable_usb_scan='1'
-#开机时延时启动(扫描)
+# 开机时延时启动(扫描)
 uci set qmodem.main.start_delay='10'
 uci commit qmodem
 # 删除自身，防止重复执行
