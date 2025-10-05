@@ -10,6 +10,6 @@
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 # ttyd默认登陆root
 sed -i "s|option command '/bin/login'|option command '/bin/login -f root'|g" feeds/packages/utils/ttyd/files/ttyd.config
-#修改turboacc配置
+# 修改turboacc配置
 # sed -i "s/option hw_flow '1'/option hw_flow '0'/" package/turboacc/luci-app-turboacc/root/etc/config/turboacc
 # sed -i "s/option sfe_flow '1'/option sfe_flow '0'/" package/turboacc/luci-app-turboacc/root/etc/config/turboacc
