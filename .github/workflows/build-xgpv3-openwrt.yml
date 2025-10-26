@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 env:
-  REPO_URL: https://github.com/miccjing/immortalwrt
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
   Build_Device: xgpv3
 
