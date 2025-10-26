@@ -1,4 +1,4 @@
- 西瓜皮V3 [immortalwrt](https://github.com/miccjing/immortalwrt)
+ 西瓜皮V3 [immortalwrt](https://github.com/immortalwrt/immortalwrt)
   1. 安装编译依赖
        ```
        sudo apt update -y
