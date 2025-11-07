@@ -13,5 +13,3 @@ sed -i 's/root:::0:99999:7:::/root:$5$.I1gWK7dcUcq0vLu$6hBUt6cPnCk3.GVLcUvJOVdcr
 sed -i "s/hostname='ImmortalWrt'/hostname='OpenWrt'/g" package/base-files/files/bin/config_generate
 # 添加luci-theme-alpha
 git clone https://github.com/miccjing/luci-theme-alpha package/luci-theme-alpha
-# 
-sed -i '/DEVICE_PACKAGES := kmod-mt7916-firmware wpad-openssl kmod-usb-net-rndis uqmi/d' target/linux/rockchip/image/armv8.mk
