@@ -2,6 +2,7 @@
 # 脚本用途：在 OpenWrt feeds 更新之前执行的准备工作脚本
 #
 # 添加Qmodem feeds
+git reset --hard 6fd212d
 echo 'src-git qmodem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
 # 添加luci-app-turboacc
 # curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
