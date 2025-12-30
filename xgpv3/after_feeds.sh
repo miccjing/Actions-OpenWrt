@@ -13,5 +13,5 @@ sed -i "s|option command '/bin/login'|option command '/bin/login -f root'|g" fee
 # 修改turboacc配置
 # sed -i "s/option hw_flow '1'/option hw_flow '0'/" package/turboacc/luci-app-turboacc/root/etc/config/turboacc
 # sed -i "s/option sfe_flow '1'/option sfe_flow '0'/" package/turboacc/luci-app-turboacc/root/etc/config/turboacc
-#取消 luci-app-attendedsysupgrade
+# 取消 luci-app-attendedsysupgrade
 sed -i '/luci-app-attendedsysupgrade/d' feeds/luci/collections/luci/Makefile
