@@ -3,6 +3,8 @@
 #
 # 添加Qmodem feeds
 echo 'src-git qmodem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
+# 添加passwall2 feeds
+echo 'src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2;main' >> feeds.conf.default
 # 添加luci-app-turboacc
 # curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
 # 修改lan口ip
