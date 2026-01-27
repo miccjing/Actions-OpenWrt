@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
