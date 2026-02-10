@@ -32,7 +32,8 @@ jobs:
       
     - name: Setup Go
       uses: actions/setup-go@v5
-      with: go-version: 'stable'
+      with: 
+             go-version: 'stable'
       
     - name: Free disk space
       run: |
