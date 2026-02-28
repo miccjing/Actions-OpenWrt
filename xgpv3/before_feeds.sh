@@ -3,8 +3,6 @@
 #
 # 添加Qmodem feeds
 echo 'src-git qmodem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
-# 添加passwall2 feeds
-echo 'src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2;main' >> feeds.conf.default
 # 添加luci-app-turboacc
 # curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
 # 修改lan口ip
@@ -15,3 +13,7 @@ sed -i 's/root:::0:99999:7:::/root:$5$.I1gWK7dcUcq0vLu$6hBUt6cPnCk3.GVLcUvJOVdcr
 # sed -i "s/hostname='ImmortalWrt'/hostname='OpenWrt'/g" package/base-files/files/bin/config_generate
 # 添加luci-theme-alpha
 git clone https://github.com/miccjing/luci-theme-alpha package/luci-theme-alpha
+# 添加luci-app-easytier
+git clone https://github.com/EasyTier/luci-app-easytier package/luci-app-easytier
+# 添加luci-app-passwall2
+git clone https://github.com/Openwrt-Passwall/openwrt-passwall2 package/openwrt-passwall2
