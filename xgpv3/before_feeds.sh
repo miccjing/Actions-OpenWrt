@@ -14,6 +14,6 @@ sed -i 's/root:::0:99999:7:::/root:$5$.I1gWK7dcUcq0vLu$6hBUt6cPnCk3.GVLcUvJOVdcr
 # 添加luci-theme-alpha
 git clone https://github.com/miccjing/luci-theme-alpha package/luci-theme-alpha
 # 添加luci-app-easytier
-git clone https://github.com/EasyTier/luci-app-easytier package/luci-app-easytier
+# git clone https://github.com/EasyTier/luci-app-easytier package/luci-app-easytier
 # 添加luci-app-passwall2
 git clone https://github.com/Openwrt-Passwall/openwrt-passwall2 package/openwrt-passwall2
