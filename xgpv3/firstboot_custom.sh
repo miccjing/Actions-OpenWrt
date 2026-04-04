@@ -16,8 +16,8 @@ uci commit luci
 #
 # 添加 LED 配置，禁用 blue:sys LED
 uci add system led
-uci set system.@led[-1].name='disable'
-uci set system.@led[-1].sysfs='blue:sys'
+uci set system.@led[-1].name='disable_led'
+uci set system.@led[-1].sysfs='blue:status'
 uci set system.@led[-1].trigger='none'
 uci set system.@led[-1].default='0'
 uci commit system
