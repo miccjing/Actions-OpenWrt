@@ -17,7 +17,6 @@ env:
 
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: false
 
 jobs:
   build:
@@ -25,7 +24,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@main
 
     - name: Free disk space
       run: |
@@ -49,7 +48,7 @@ jobs:
              python3-pyelftools qemu-utils re2c rsync scons squashfs-tools subversion swig texinfo uglifyjs \
              upx-ucl unzip vim wget xmlto xxd zlib1g-dev zstd
         sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+        sudo chown $USER:$USER /workdir
 
     - name: Clone source code
       working-directory: /workdir
@@ -58,24 +57,15 @@ jobs:
         git clone --depth 1 -b $REPO_BRANCH $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Cache OpenWrt build
-      uses: actions/cache@v4
-      with:
-        path: |
-          ~/.ccache
-          ${{ github.workspace }}/openwrt/staging_dir
-          ${{ github.workspace }}/openwrt/build_dir
-          ${{ github.workspace }}/openwrt/dl
-        key: ${{ runner.os }}-openwrt-${{ hashFiles('**/.config') }}
-        restore-keys: |
-          ${{ runner.os }}-openwrt-
 
     - name: Load custom feeds
       run: |
         [ -e $Build_Device/feeds.conf.default ] && mv $Build_Device/feeds.conf.default openwrt/feeds.conf.default
-        chmod +x $Build_Device/before_feeds.sh
-        cd openwrt
-        $GITHUB_WORKSPACE/$Build_Device/before_feeds.sh
+        if [ -f $Build_Device/before_feeds.sh ]; then
+          chmod +x $Build_Device/before_feeds.sh
+          cd openwrt
+          $GITHUB_WORKSPACE/$Build_Device/before_feeds.sh
+        fi
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -85,12 +75,15 @@ jobs:
 
     - name: Load custom configuration
       run: |
-        mv $Build_Device/files openwrt/files
-        mv $Build_Device/firstboot_custom.sh openwrt/package/base-files/files/etc/uci-defaults/999-firstboot_custom.sh
-        mv $Build_Device/make.config openwrt/.config
-        chmod +x $Build_Device/after_feeds.sh
-        cd openwrt
-        $GITHUB_WORKSPACE/$Build_Device/after_feeds.sh
+        [ -d $Build_Device/files ] && mv $Build_Device/files openwrt/files
+        [ -f $Build_Device/firstboot_custom.sh ] && mv $Build_Device/firstboot_custom.sh openwrt/package/base-files/files/etc/uci-defaults/999-firstboot_custom.sh
+        [ -f $Build_Device/make.config ] && mv $Build_Device/make.config openwrt/.config
+
+        if [ -f $Build_Device/after_feeds.sh ]; then
+          chmod +x $Build_Device/after_feeds.sh
+          cd openwrt
+          $GITHUB_WORKSPACE/$Build_Device/after_feeds.sh
+        fi
 
     - name: Download package
       run: |
@@ -104,7 +97,8 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 V=s
+        make -j$(($(nproc)+1)) || make -j1 V=s || exit 1
+
         echo "status=success" >> $GITHUB_OUTPUT
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
@@ -114,28 +108,18 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
-    - name: Organize sysupgrade images
+    - name: Organize files
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        find . -type f -name '*-squashfs-sysupgrade.img.gz' -print > ../sysupgrade_list.txt
-        if [ -s ../sysupgrade_list.txt ]; then
-          mkdir -p ../../sysupgrade
-          while read -r f; do
-            cp "$f" ../../sysupgrade/
-          done < ../sysupgrade_list.txt
-          echo "FIRMWARE=$(realpath ../../sysupgrade)" >> $GITHUB_ENV
-          echo "status=success" >> $GITHUB_OUTPUT
-        else
-          echo "❌ 未找到 sysupgrade 镜像文件"
-          exit 1
-        fi
+        rm -rf packages
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        echo "status=success" >> $GITHUB_OUTPUT
 
-    - name: Upload sysupgrade images
-      uses: actions/upload-artifact@v4
-      if: success() && steps.organize.outputs.status == 'success'
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_sysupgrade${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}/*.img.gz
-        retention-days: 30
+        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: ${{ env.FIRMWARE }}
