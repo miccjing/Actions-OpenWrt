@@ -4,17 +4,11 @@ on:
   repository_dispatch:
   workflow_dispatch:
 
-permissions:
-  contents: write
-  actions: write
-
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
   Build_Device: xgpv3
-
+  
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
 
