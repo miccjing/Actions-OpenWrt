@@ -16,4 +16,4 @@ git clone https://github.com/miccjing/luci-theme-alpha package/luci-theme-alpha
 # 添加luci-app-easytier
 # git clone https://github.com/EasyTier/luci-app-easytier package/luci-app-easytier
 # 添加luci-app-passwall2
-git clone https://github.com/Openwrt-Passwall/openwrt-passwall2 package/openwrt-passwall2
+echo 'src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2.git;main' >> feeds.conf.default
