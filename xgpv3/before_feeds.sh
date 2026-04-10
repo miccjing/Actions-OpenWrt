@@ -4,7 +4,7 @@
 # 添加Qmodem feeds
 echo 'src-git qmodem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
 # 添加luci-theme-alpha
-echo 'src-git luci-theme-alpha https://github.com/miccjing/luci-theme-alpha.git;main' >> feeds.conf.default
+echo 'src-git alpha https://github.com/miccjing/luci-theme-alpha.git;main' >> feeds.conf.default
 # 添加luci-app-easytier
 # git clone https://github.com/EasyTier/luci-app-easytier package/luci-app-easytier
 # 添加luci-app-passwall2
