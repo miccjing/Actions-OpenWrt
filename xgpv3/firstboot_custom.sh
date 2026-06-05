@@ -1,17 +1,17 @@
 #!/bin/sh
-# 1. ttyd 自动登录 root
+# ttyd 自动登录 root
 sed -i "s|option command '/bin/login'|option command '/bin/login -f root'|g" /etc/config/ttyd
-# 2. 设置 root 密码
+# 设置 root 密码
 printf "password\npassword\n" | passwd root
-# 3. 配置 WiFi
+# 配置 WiFi
 uci set wireless.@wifi-iface[0].ssid='OpenWrt'
 uci set wireless.@wifi-iface[0].encryption='psk2+ccmp'
 uci set wireless.@wifi-iface[0].key='j1472580369'
 # uci set wireless.radio0.country='CN'
 # uci set wireless.radio0.cell_density='0'
-# 4. 修改 LuCI 主题
+# 修改 LuCI 主题
 # uci set luci.main.mediaurlbase='/luci-static/alpha'
-# 5. 关闭 LED（避免重复添加）
+# 关闭 LED
 uci add system led
 uci set system.@led[-1].name='disable_led'
 uci set system.@led[-1].sysfs='blue:status'
