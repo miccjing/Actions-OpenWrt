@@ -6,4 +6,4 @@
 rm -rf feeds/packages/net/v2ray-geodata/*
 curl -L https://raw.githubusercontent.com/Openwrt-Passwall/openwrt-passwall-packages/refs/heads/main/v2ray-geodata/Makefile -o feeds/packages/net/v2ray-geodata/Makefile
 # 修改设备名
-sed -i "s|model = "NLnet XiGuaPi V3";|model = "WatermelonPi V3";|g" target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-xiguapi-v3.dts
+sed -i 's|model = "NLnet XiGuaPi V3";|model = "WatermelonPi V3";|g' target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-xiguapi-v3.dts
