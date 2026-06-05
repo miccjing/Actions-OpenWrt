@@ -19,10 +19,11 @@ uci set system.@led[-1].name='disable_led'
 uci set system.@led[-1].sysfs='blue:status'
 uci set system.@led[-1].trigger='none'
 uci set system.@led[-1].default='0'
-# qmodem设置
+# qmodem设置(修复T99W373)
 uci set qmodem.main.block_auto_probe='1'
 uci del qmodem.main.enable_pcie_scan
 uci del qmodem.main.enable_usb_scan
+echo "pcie_mhi mhi_mbim_enabled=1" > /etc/modules.d/90-pcie_mhi
 # 重新加载
 uci commit wireless
 wifi reload
