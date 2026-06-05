@@ -1,6 +1,8 @@
 #!/bin/sh
 # ttyd 自动登录 root
 sed -i "s|option command '/bin/login'|option command '/bin/login -f root'|g" /etc/config/ttyd
+# 开启 xray
+sed -i "s|option enabled '0'|option enabled '1'|g" /etc/config/xray 
 # 设置 root 密码
 printf "password\npassword\n" | passwd root
 # 配置 WiFi
