@@ -23,7 +23,6 @@ uci set system.@led[-1].default='0'
 uci set qmodem.main.block_auto_probe='1'
 uci del qmodem.main.enable_pcie_scan
 uci del qmodem.main.enable_usb_scan
-echo "pcie_mhi mhi_mbim_enabled=1" > /etc/modules.d/90-pcie_mhi
 # 重新加载
 uci commit wireless
 wifi reload
