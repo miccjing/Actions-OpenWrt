@@ -14,11 +14,11 @@ uci set wireless.@wifi-iface[0].key='j1472580369'
 # 修改 LuCI 主题
 # uci set luci.main.mediaurlbase='/luci-static/alpha'
 # 关闭 LED
-uci add system led
-uci set system.@led[-1].name='disable_led'
-uci set system.@led[-1].sysfs='blue:status'
-uci set system.@led[-1].trigger='none'
-uci set system.@led[-1].default='0'
+#uci add system led
+#uci set system.@led[-1].name='disable_led'
+#uci set system.@led[-1].sysfs='blue:status'
+#uci set system.@led[-1].trigger='none'
+#uci set system.@led[-1].default='0'
 # qmodem设置(修复T99W373)
 uci set qmodem.main.block_auto_probe='1'
 uci del qmodem.main.enable_pcie_scan
