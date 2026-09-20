@@ -1,4 +1,4 @@
-name: Build OpenWrt for redmiax6
+name: Build OpenWrt for redmiax5jdc
 
 on:
   repository_dispatch:
