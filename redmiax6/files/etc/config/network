@@ -1,0 +1,34 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	list ipaddr '127.0.0.1/8'
+
+config globals 'globals'
+	option packet_steering '1'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ip6assign '64'
+	option ip6ifaceid 'eui64'
+	list ipaddr '10.0.0.1/24'
+
+config interface 'wan'
+	option device 'wan'
+	option proto 'pppoe'
+	option username 'DZADSL5802095'
+	option password '19991231'
+	option norelease '1'
+
+config interface 'Modem'
+	option proto 'dhcp'
+	option device 'wan'
+	option metric '2'
