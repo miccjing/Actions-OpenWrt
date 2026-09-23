@@ -5,6 +5,7 @@ config interface 'loopback'
 	list ipaddr '127.0.0.1/8'
 
 config globals 'globals'
+	option packet_steering '0'
 
 config device
 	option name 'br-lan'
