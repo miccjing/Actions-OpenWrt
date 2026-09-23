@@ -7,4 +7,3 @@ rm -rf feeds/packages/net/v2ray-geodata/*
 curl -L https://raw.githubusercontent.com/Openwrt-Passwall/openwrt-passwall-packages/refs/heads/main/v2ray-geodata/Makefile -o feeds/packages/net/v2ray-geodata/Makefile
 sed -i "s/option min_cache_ttl[[:space:]]*3600/option min_cache_ttl	0/" package/network/services/dnsmasq/files/dhcp.conf
 sed -i "s/option use_stale_cache[[:space:]]*3600/option use_stale_cache	0/" package/network/services/dnsmasq/files/dhcp.conf
-sed -i "s/option cachesize[[:space:]]*8000/option cachesize	1024/" package/network/services/dnsmasq/files/dhcp.conf
