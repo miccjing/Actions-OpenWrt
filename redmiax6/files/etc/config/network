@@ -28,7 +28,7 @@ config interface 'wan'
 	option password '19991231'
 	option norelease '1'
 
-config interface 'Modem'
+config interface 'modem'
 	option proto 'dhcp'
 	option device 'wan'
 	option metric '2'
