@@ -38,8 +38,10 @@ uci set wireless.default_radio1.mobility_domain='4f57'
 uci set luci.main.lang='zh_cn'
 uci set luci.main.mediaurlbase='/luci-static/material3'
 # 重新加载
+uci set system.@system[0].hostname='Redmi_AX5'
 uci commit wireless
 wifi reload
 uci commit luci
 uci commit system
+/etc/init.d/system restart
 exit 0
