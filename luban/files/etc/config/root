@@ -1,0 +1,1 @@
+0 4 * * 0 sleep 70 && reboot
