@@ -1,4 +1,4 @@
-name: Build OpenWrt for xgpv3
+name: Build OpenWrt for luban
 
 on:
   repository_dispatch:
