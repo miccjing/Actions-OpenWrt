@@ -27,6 +27,7 @@ config interface 'wan'
 	option username 'DZADSL5802095'
 	option password '19991231'
 	option norelease '1'
+    option metric '1'
 
 config interface 'wan6'
 	option proto 'dhcp'
