@@ -26,6 +26,7 @@ config interface 'wan'
 	option username 'DZADSL2572955'
 	option password '19991231'
 	option norelease '1'
+    option metric '2'
 
 config interface 'wan6'
 	option device 'wan'
