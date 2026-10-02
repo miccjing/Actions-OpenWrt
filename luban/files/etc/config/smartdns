@@ -39,9 +39,3 @@ config server
 	option enabled '1'
 	option name 'aliyun'
 	option ip '223.5.5.5'
-
-config server
-	option enabled '1'
-	option name 'bytedance'
-	option ip '180.184.1.1'
-
