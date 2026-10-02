@@ -14,6 +14,9 @@ config smartdns
 	option force_https_soa '1'
 	option seconddns_tcp_server '1'
 	option port '5353'
+	option old_port '5353'
+	option old_enabled '1'
+	option old_auto_set_dnsmasq '1'
 
 config domain-rule
 	option dualstack_ip_selection 'yes'
@@ -27,7 +30,7 @@ config ip-rule
 
 config server
 	option enabled '1'
-	option name 'pub'
+	option name 'tencent'
 	option ip '119.29.29.29'
 
 config server
@@ -39,4 +42,9 @@ config server
 	option enabled '1'
 	option name 'aliyun'
 	option ip '223.5.5.5'
+
+config server
+	option enabled '1'
+	option name 'bytedance'
+	option ip '180.184.1.1'
 
