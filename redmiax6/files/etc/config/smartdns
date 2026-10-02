@@ -14,9 +14,6 @@ config smartdns
 	option force_https_soa '1'
 	option seconddns_tcp_server '1'
 	option port '5353'
-	option old_port '5353'
-	option old_enabled '1'
-	option old_auto_set_dnsmasq '1'
 
 config domain-rule
 	option dualstack_ip_selection 'yes'
